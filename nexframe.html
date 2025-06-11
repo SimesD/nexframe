@@ -1,1 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexFrame.ai - Framing the Right Questions, Fast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Dark gray background */
+            color: #F3F4F6; /* Light gray text */
+        }
+        .hero-gradient {
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #2563EB 100%);
+        }
+        .section-title {
+            font-size: 2.25rem; /* 36px */
+            line-height: 2.5rem; /* 40px */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem; /* 24px */
+            color: #60A5FA; /* Light blue accent */
+        }
+        .card {
+            background-color: #1F2937; /* Slightly lighter dark gray */
+            border: 1px solid #374151; /* Medium gray border */
+            border-radius: 0.75rem; /* 12px */
+            padding: 1.5rem; /* 24px */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(96, 165, 250, 0.2), 0 10px 10px -5px rgba(96, 165, 250, 0.1);
+        }
+        .card h3 {
+            color: #93C5FD; /* Lighter blue for card titles */
+            font-size: 1.5rem; /* 24px */
+            font-weight: 600;
+            margin-bottom: 1rem; /* 16px */
+        }
+        .card p, .card ul {
+            color: #D1D5DB; /* Lighter gray for card text */
+            font-size: 1rem; /* 16px */
+            line-height: 1.75; /* 28px */
+        }
+        .card ul {
+            list-style-position: inside;
+            padding-left: 0.5rem;
+        }
+        .card ul li::marker {
+            color: #60A5FA;
+        }
+        .cta-button {
+            background-color: #3B82F6; /* Blue */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem; /* 8px */
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        .cta-button:hover {
+            background-color: #2563EB; /* Darker blue */
+        }
+        .nav-link {
+            color: #D1D5DB;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem; /* 6px */
+        }
+        .nav-link:hover {
+            color: #F9FAFB; /* White */
+            background-color: #374151; /* Medium gray */
+        }
+        .tab-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .tab-button.active {
+            background-color: #3B82F6;
+            color: white;
+            border-color: #3B82F6;
+        }
+        .tab-button:not(.active) {
+            background-color: #374151;
+            color: #D1D5DB;
+            border-color: #4B5563;
+        }
+        .tab-button:not(.active):hover {
+            background-color: #4B5563;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* Custom scrollbar for better aesthetics in dark mode */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1F2937;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563EB;
+        }
+    </style>
+</head>
+<body class="antialiased">
 
+    <!-- Header -->
+    <header class="bg-gray-900/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">NexFrame<span class="text-blue-400">.ai</span></a>
+            <div class="hidden md:flex space-x-4">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#solutions" class="nav-link">Solutions</a>
+                <a href="#approach" class="nav-link">Our Approach</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-800">
+            <a href="#hero" class="block py-2 px-4 text-sm nav-link">Home</a>
+            <a href="#solutions" class="block py-2 px-4 text-sm nav-link">Solutions</a>
+            <a href="#approach" class="block py-2 px-4 text-sm nav-link">Our Approach</a>
+            <a href="#contact" class="block py-2 px-4 text-sm nav-link">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-gradient py-20 md:py-32">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                NexFrame.ai: Framing the Right Questions, <span class="block md:inline">Fast.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-blue-100 mb-10 max-w-3xl mx-auto">
+                We cut through data noise to deliver real answers to your most critical business questions, leveraging AI strategically where it truly adds value.
+            </p>
+            <a href="#solutions" class="cta-button text-lg px-8 py-4">Discover Our Solutions</a>
+        </div>
+    </section>
+
+    <!-- Solutions Section (Tabbed) -->
+    <section id="solutions" class="py-16 md:py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Tailored AI Solutions for Your Business</h2>
+            <p class="text-center text-gray-400 max-w-2xl mx-auto mb-12">
+                Whether you're a large enterprise or a growing SME, NexFrame.ai provides targeted AI-powered insights to overcome your unique data challenges and drive outcomes.
+            </p>
+
+            <!-- Tabs -->
+            <div class="flex justify-center mb-8 space-x-2 md:space-x-4">
+                <button class="tab-button active" data-tab="enterprise">For Large Enterprises</button>
+                <button class="tab-button" data-tab="sme">For SMEs</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="enterprise-content" class="tab-content active">
+                <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                            <svg class="w-10 h-10 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                            <h3 class="text-2xl">Empowering Large Enterprises</h3>
+                        </div>
+                        <p class="mb-4"><strong>Value Proposition:</strong> We help large enterprises cut through data noise to get real answers to high-stakes business questions using AI only where it adds value, never for its own sake.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-blue-300 mb-2">Target Audience:</h4>
+                                <ul class="list-disc space-y-1">
+                                    <li>Enterprise leaders in operations, finance, ESG, and strategy.</li>
+                                    <li>Mid-to-large organizations with fragmented systems and buried insights.</li>
+                                    <li>Stakeholders frustrated with slow BI cycles and low-impact dashboards.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-blue-300 mb-2">Problem We Solve:</h4>
+                                <p>Too many businesses ask: "Why can't we just get a straight answer from our own data?" Legacy dashboards overwhelm. BI pipelines lag. AI feels like a science experiment. NexFrame.ai delivers sharp, contextual answers to the questions that drive outcomes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="sme-content" class="tab-content">
+                 <div class="grid md:grid-cols-1 lg:grid-cols-1 gap-8">
+                    <div class="card">
+                        <div class="flex items-center mb-4">
+                             <svg class="w-10 h-10 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            <h3 class="text-2xl">Unlocking Growth for SMEs</h3>
+                        </div>
+                        <p class="mb-4"><strong>Value Proposition:</strong> We help SMEs surface and solve core operational problems hiding in everyday processes using AI to connect, clean, and act on messy data across systems. We help you uncover hidden costs and unlock flow.</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="font-semibold text-blue-300 mb-2">Target Audience:</h4>
+                                <ul class="list-disc space-y-1">
+                                    <li>Founders, COOs, and functional heads (Ops, Finance, Supply, CX).</li>
+                                    <li>Growth-stage SMEs bogged down by manual work, broken handoffs, or unclear metrics.</li>
+                                    <li>Teams juggling spreadsheets, legacy systems, and partial reports.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-blue-300 mb-2">Problem We Solve:</h4>
+                                <p>SMEs lose time, money, headspace, and competitive edge to slow, manual processes because data lives in too many places, reporting is rear-view, not real-time, and insights are buried or never appear. We streamline the unsexy but essential: workflow friction, reporting pain, and buried KPIs.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Approach Section -->
+    <section id="approach" class="py-16 md:py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Our Approach: Finding the Right Problems, Together</h2>
+            <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+                We don't just apply AI; we partner with you to identify the core challenges where intelligent solutions can create the most significant impact.
+            </p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                <div class="card">
+                    <div class="flex items-center mb-3">
+                        <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"></path></svg>
+                        <h4 class="text-xl font-semibold text-blue-300">For Enterprises: Strategic Insight Identification</h4>
+                    </div>
+                    <ul class="list-disc space-y-2">
+                        <li><strong>Talk to executives:</strong> "What's the one insight that would change your quarter?"</li>
+                        <li><strong>Map real decision bottlenecks</strong> and data blind spots.</li>
+                        <li><strong>Trace high-friction workflows</strong> and unmet information needs.</li>
+                        <li><strong>Rapid test:</strong> Can AI generate the insight faster and more clearly than existing tools?</li>
+                    </ul>
+                </div>
+                <div class="card">
+                     <div class="flex items-center mb-3">
+                        <svg class="w-8 h-8 text-blue-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <h4 class="text-xl font-semibold text-blue-300">For SMEs: Practical Problem Solving</h4>
+                    </div>
+                    <ul class="list-disc space-y-2">
+                        <li><strong>Go beyond the surface:</strong> "What's draining your team that no one's got time to fix?"</li>
+                        <li><strong>Follow time sinks, exceptions,</strong> and escalation paths.</li>
+                        <li><strong>Identify scattered data trails</strong> and patchwork workarounds.</li>
+                        <li><strong>Ask:</strong> "What could you do if this ran 80% faster or auto-reported?"</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="contact" class="py-16 md:py-24">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="section-title">Ready to Unlock the Power of Your Data?</h2>
+            <p class="text-lg text-gray-400 mb-8 max-w-xl mx-auto">
+                Let NexFrame.ai help you transform your data challenges into actionable insights and tangible results.
+            </p>
+            <a href="mailto:contact@nexframe.ai" class="cta-button text-lg px-10 py-4">
+                Get In Touch
+            </a>
+             <p class="mt-6 text-sm text-gray-500">Or email us at: contact@nexframe.ai</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-700 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>&copy; <span id="currentYear"></span> NexFrame.ai. All rights reserved.</p>
+            <p class="text-sm mt-2">
+                <a href="#" class="hover:text-gray-300 transition-colors">Privacy Policy</a> | 
+                <a href="#" class="hover:text-gray-300 transition-colors">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileNavLinks = mobileMenu.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deactivate all buttons and hide all content
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Activate clicked button and show corresponding content
+                button.classList.add('active');
+                const tabId = button.dataset.tab;
+                document.getElementById(`${tabId}-content`).classList.add('active');
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
